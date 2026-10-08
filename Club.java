@@ -1,5 +1,6 @@
 //Question 1
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * Store details of club memberships.
  * 
@@ -79,12 +80,15 @@ public class Club
              System.out.println("Month is outside of valid range");
              return purgeList;
          }
-         for (Membership m : members) {
-             if (m.getMonth() == month && m.getYear() == year){
+         
+         Iterator<Membership> it = members.iterator();
+         while (it.hasNext()){
+             Membership m = it.next();
+             if(m.getMonth() == month && m.getYear() == year){
                  purgeList.add(m);
+                 it.remove();
              }
          }
-         members.removeAll(purgeList);
          return purgeList;
     }
 }
