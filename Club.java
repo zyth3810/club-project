@@ -78,9 +78,21 @@ public class Club
          ArrayList<Membership> purgeList = new ArrayList<>();
          if (month < 1 || month > 12) {
              System.out.println("Month is outside of valid range");
-             return purgeList;
+             return null;
          }
+         if (year < 1990) {
+             System.out.println("Year is outside of valid range");
+             return null;
+         }
+         //for-loop solution
+         for (Membership m : members){
+             if (m.getMonth() == month && m.getYear() == year){
+                 purgeList.add(m);
+             }
+         }
+         members.removeAll(purgeList);
          
+         // Iterator solution
          Iterator<Membership> it = members.iterator();
          while (it.hasNext()){
              Membership m = it.next();
